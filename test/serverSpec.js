@@ -6,15 +6,22 @@ describe('Node database server', function(){
 
   describe('server is accessible', function(){
 
+    var url = "http://localhost:4000/set?kyaw=awesome";
+
       it('should return 200', function(done){
-
-        var url = "http://localhost:4000";
-
-        request(url, function(err, res, body){
-          expect(res.statusCode).to.equal(200);
+        request(url, function(err, response, body){
+          expect(response.statusCode).to.equal(200);
           done();
         });
       });
+
+      it('saves key and value to the memory', function(done){
+        request(url, function(err, response, body){
+          expect(body).to.equal('{"kyaw":"awesome"}');
+          done();
+        });
+      });
+      
     });
 
 
