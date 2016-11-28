@@ -21,7 +21,13 @@ describe('Node database server', function(){
           done();
         });
       });
-      
+
+      it('return the value when search by key', function(done){
+        request("http://localhost:4000/get?key=kyaw", function(err, response, body){
+          expect(body).to.equal('awesome');
+          done();
+        });
+      });
     });
 
 
