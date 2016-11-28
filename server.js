@@ -15,6 +15,14 @@ server.get('/set', (request, response) => {
   response.send(database);
 });
 
+server.get('/get', (request, response) => {
+  if (database[request.query.key] !== undefined) {
+    response.send(database[request.query.key]);
+  } else {
+    response.send('No record with the key: ' + request.query.key)
+  }
+});
+
 server.listen(port, (err) => {
   if (err) {
     return console.log('something bad happened', err)
