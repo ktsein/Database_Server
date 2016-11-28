@@ -7,6 +7,14 @@ server.get('/', (request, response) => {
   response.send('Hello from Kyaw Node Server!')
 });
 
+server.get('/set', (request, response) => {
+  for (var key in request.query) {
+    database[key] = request.query[key];
+    console.log('data saved as: { ' + key + ':' + request.query[key] + '}');
+  }
+  response.send(database);
+});
+
 server.listen(port, (err) => {
   if (err) {
     return console.log('something bad happened', err)
